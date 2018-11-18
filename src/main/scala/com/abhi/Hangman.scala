@@ -37,7 +37,7 @@ object Hangman extends App {
         IO.sync(scala.util.Random.nextInt(max))
     val chooseWord: IO[IOException, String] = for {
         rand <- nextInt(Dictionary.length)
-    } yield Dictionary.lift(rand).getOrElse("Bug in the program!")
+    } yield Dictionary(rand)
     def gameLoop(state: State) : IO[IOException, State] = {
         for {
             guess <- getChoice
